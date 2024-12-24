@@ -7,22 +7,48 @@ on:
       - main
 
 jobs:
-  build:
+  client-build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v3
-      
-    - name: Setup Node.js
+
+    - name: Setup Node.js for client
       uses: actions/setup-node@v3
       with:
         node-version: 18
 
-    - name: Install dependencies
+    - name: Install dependencies for client
+      working-directory: ./frontend
       run: npm install
 
-    - name: Run tests
+    - name: Run client tests
+      working-directory: ./client
       run: npm run test:headless
 
-    - name: Build
+    - name: Build client
+      working-directory: ./client
+      run: npm run build
+
+  server-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js for server
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18
+
+    - name: Install dependencies for server
+      working-directory: ./backend
+      run: npm install
+
+    - name: Run server tests
+      working-directory: ./server
+      run: npm run test
+
+    - name: Build server
+      working-directory: ./server
       run: npm run build
