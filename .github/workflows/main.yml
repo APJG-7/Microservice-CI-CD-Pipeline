@@ -1,10 +1,5 @@
 name: CI/CD pipeline
 run-name: microservices
-
-
-permissions:
-  contents: read
-  issues: write
   
 on: 
   push:
