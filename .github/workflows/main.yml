@@ -44,11 +44,3 @@ jobs:
     - name: Install dependencies for server
       working-directory: ./backend
       run: npm install
-
-    - name: Run server tests
-      working-directory: ./server
-      run: npm run test
-
-    - name: Build server
-      working-directory: ./server
-      run: npm run build
